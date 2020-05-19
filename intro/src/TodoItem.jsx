@@ -8,7 +8,10 @@ const TodoItem = ({ item }) => {
 
   const editItemText = ({ target: { value } }) => {
     let _todoList = [...todoList];
-    _todoList[index] = value;
+    _todoList[index] = {
+      ...item,
+      text: value,
+    };
     setTodoList(_todoList);
   };
   const toggleItemCompletion = () => {
