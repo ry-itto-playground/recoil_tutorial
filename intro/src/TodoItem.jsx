@@ -7,20 +7,20 @@ const TodoItem = ({ item }) => {
   const index = todoList.findIndex((listItem) => listItem.id === item.id);
 
   const editItemText = ({ target: { value } }) => {
-    let _todoList = [...todoList];
-    _todoList[index] = {
+    const newList = replaceItemAtIndex(todoList, index, {
       ...item,
       text: value,
-    };
-    setTodoList(_todoList);
+    });
+
+    setTodoList(newList);
   };
   const toggleItemCompletion = () => {
-    let _todoList = [...todoList];
-    _todoList[index] = {
+    const newList = replaceItemAtIndex(todoList, index, {
       ...item,
       isComplete: !item.isComplete,
-    };
-    setTodoList(_todoList);
+    });
+
+    setTodoList(newList);
   };
   const deleteItem = () => {
     setTodoList([...todoList.slice(0, index), ...todoList.slice(index + 1)]);
@@ -40,3 +40,7 @@ const TodoItem = ({ item }) => {
 };
 
 export default TodoItem;
+
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
