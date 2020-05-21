@@ -3,7 +3,7 @@ import { articleQuery } from "./State";
 import { useRecoilValue } from "recoil";
 
 const ArticleList = () => {
-  const articles = useRecoilValue(articleQuery);
+  const articles = useRecoilValue(articleQuery("iOS"));
   return (
     <div>
       {articles.map((article) => {
